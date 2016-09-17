@@ -19,8 +19,8 @@ type config struct {
 }
 
 type point struct {
-	x float64
-	y float64
+	X float64
+	Y float64
 }
 
 func getPoints(inputFileName string) (points []point) {

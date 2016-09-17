@@ -18,8 +18,8 @@ func leastSquare(points []point, theta0, theta1, alpha float64, significantFigur
 func pointsToXY(points []point) (x, y []float64, m int) {
 	m = len(points)
 	for i := 0; i < m; i++ {
-		x = append(x, points[i].x)
-		y = append(y, points[i].y)
+		x = append(x, points[i].X)
+		y = append(y, points[i].Y)
 	}
 	return x, y, m
 }
@@ -63,7 +63,7 @@ func round(f float64, places int) float64 {
  */
 
 func differentSquare(xi, yi, theta0, theta1 float64) float64 {
-	return math.Exp2(yi - h(xi, theta0, theta1))
+	return math.Pow(yi-h(xi, theta0, theta1), 2)
 }
 
 func sumDifferentSquare(points []point, theta0, theta1 float64) float64 {

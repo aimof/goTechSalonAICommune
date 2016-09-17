@@ -14,5 +14,5 @@ func main() {
 	points := getPoints(conf.InputFileName)
 	resultTheta0, resultTheta1 := leastSquare(points, conf.FirstTheta0, conf.FirstTheta1, conf.Alpha, conf.SignificantFigure)
 	diff := sumDifferentSquare(points, resultTheta0, resultTheta1)
-	fmt.Printf("y=%f+%f*x\n距離は%fです\n", resultTheta0, resultTheta1, diff)
+	fmt.Printf("y=%f+%f*x\n距離の二乗の和は%fです\n", resultTheta0, resultTheta1, diff)
 }
