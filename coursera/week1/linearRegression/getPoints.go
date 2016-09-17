@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"log"
+	"os"
 )
 
 /*
@@ -11,38 +11,42 @@ import (
  */
 
 type config struct {
-	inputFileName     string  `json:"inputFileName"`
-	alpha             float64 `json:"alpha"`
-	significantFigure int     `json:"significantFigure"`
-	firstTheta0       float64 `json:"firstTheta0"`
-	firstTheta1       float64 `json:"firstTheta1"`
+	InputFileName     string
+	Alpha             float64
+	SignificantFigure int
+	FirstTheta0       float64
+	FirstTheta1       float64
 }
 
 type point struct {
-	x float64 `json:"x"`
-	y float64 `json:"y"`
+	x float64
+	y float64
 }
 
 func getPoints(inputFileName string) (points []point) {
-	file, err := ioutil.ReadFile(inputFileName)
+	file, err := os.Open(inputFileName)
+	defer file.Close()
 	if err != nil {
-		log.Fatal("サンプルファイルが開けませんでした")
+		log.Fatal("サンプルファイルが開けませんでした", err)
 	}
-	err = json.Unmarshal(file, &points)
+	dec := json.NewDecoder(file)
+	err = dec.Decode(&points)
 	if err != nil {
-		log.Fatal("サンプルファイルの形式に誤りがあります。")
+		log.Fatal(err)
 	}
 	return points
 }
 
 func readConfig() (conf config) {
-	file, err := ioutil.ReadFile("$GOPATH/src/github.com/go-fmt/goTechSalonAICommune/coursera/week1/linearRegression/config.json")
+	file, err := os.Open("config.json")
+	defer file.Close()
 	if err != nil {
 		log.Fatal("コンフィグファイルが開けませんでした", err)
 	}
-	err = json.Unmarshal(file, &conf)
+	dec := json.NewDecoder(file)
+	err = dec.Decode(&conf)
 	if err != nil {
-		log.Fatal("コンフィグファイル形式が合致しません")
+		log.Fatal(err)
 	}
 	return conf
 }

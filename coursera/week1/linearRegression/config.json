@@ -1,5 +1,5 @@
 {
-  "inputFileName": "~/Work/tech_salon_AI_commune/coursera/week1/leastSquare/json/sample.json",
+  "inputFileName": "/json/sample.json",
   "alpha": 0.01,
   "significantFigure": 5,
   "firstTheta0": 0,

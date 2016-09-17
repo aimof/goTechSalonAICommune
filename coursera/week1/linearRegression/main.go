@@ -11,8 +11,8 @@ import "fmt"
 
 func main() {
 	conf := readConfig()
-	points := getPoints(conf.inputFileName)
-	resultTheta0, resultTheta1 := leastSquare(points, conf.firstTheta0, conf.firstTheta1, conf.alpha, conf.significantFigure)
+	points := getPoints(conf.InputFileName)
+	resultTheta0, resultTheta1 := leastSquare(points, conf.FirstTheta0, conf.FirstTheta1, conf.Alpha, conf.SignificantFigure)
 	diff := sumDifferentSquare(points, resultTheta0, resultTheta1)
 	fmt.Printf("y=%f+%f*x\n距離は%fです\n", resultTheta0, resultTheta1, diff)
 }
