@@ -10,7 +10,3 @@ func TestReadConfig(t *testing.T) {
 		t.Errorf("got %s\nwant %s", actual, expected)
 	}
 }
-
-func TestGetPoints(t *testing.T) {
-
-}
